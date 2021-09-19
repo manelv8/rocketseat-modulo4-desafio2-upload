@@ -13,7 +13,7 @@ export default function Home(): JSX.Element {
   const fetchImages = async ({pageParam = null}) => {
     // await setTimeout(()=>{console.log('yeye')},5000);
     const response = await api.get(
-      "api/images",
+      "/api/images",
       {params: {after: pageParam}}
       )
     return response.data;
@@ -31,7 +31,7 @@ export default function Home(): JSX.Element {
     fetchImages
     ,
     // TODO GET AND RETURN NEXT PAGE PARAM
-    {getNextPageParam: (dataResult) => dataResult.after }
+    {getNextPageParam: (dataResult) => dataResult?.after || null }
   );
 
   const formattedData = useMemo(() => {
